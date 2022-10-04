@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route :: resource('comics','comics.index');
+Route :: resource('comics','ComicController');
