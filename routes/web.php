@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});Route :: resource('Comics','ComicController');
+
+Route :: resource('comics','comics.index');
