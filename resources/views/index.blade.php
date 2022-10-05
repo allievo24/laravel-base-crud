@@ -36,10 +36,17 @@
             <td>{{$comic->type}}</td>
             <td><a class="btn btn-primary"href="{{route('comics.show',['comic'=>$comic->id])}}">Vedi</a></td>
             <td><a class="btn btn-warning"href="{{route('comics.edit',['comic'=>$comic->id])}}">Modifica</a></td>
+            
+            <td>
+            <form action="{{route('comics.destroy',['comic' =>$comic])}}" method="POST" onsubmit="return confirm('sicuro dii voler canccellare il dato');">
+              @method('DELETE')
+              @csrf  
+              <button type="submit" class="btn btn-danger">Elimina</button>
+            </form> 
 
 
 
-
+            </td>
           </tr>
           @endforeach
         </tbody>
