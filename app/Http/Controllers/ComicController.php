@@ -71,8 +71,17 @@ class ComicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+        
     {
-        //
+        
+        $comic = Comic::find($id);
+        if($comic){
+           return view('edit', compact('comic'));
+        }else{
+            abort(404);
+        }
+        
+        
     }
 
     /**
