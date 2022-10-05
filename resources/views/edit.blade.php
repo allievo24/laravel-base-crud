@@ -5,15 +5,16 @@
 
 @section('content')
   <div class="container">
-    <form action="{{route('comics.store')}}" method="post">
+    <form action="{{route('comics.update',['comic'=> $comic->id])}}" method="post">
         @csrf
+        @method('PUT')
         <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" class="form-control" id="title" name="title" value="{{$comic->title}}"/>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-        <textarea id="description" name="description" class="form-control">value="{{$comic->title}}"</textarea>   
+            <textarea id="description" name="description" class="form-control">value="{{$comic->title}}"</textarea>   
         </div>
         <div class="mb-3">
             <label for="thumb" class="form-label">Thumb</label>
