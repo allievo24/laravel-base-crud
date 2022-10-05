@@ -2,11 +2,12 @@
 @section('title','lista dei formati')
 
 @section('content')
-<div class="container">
-    <table class="table table-striped">
 
-
-    <table class="table">
+<div class="container-fluid">
+   
+ <a href="{{route('comics.create')}}" class='btn btn-primary mt-3'>Inserisci Comic</a>
+ 
+ <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -17,13 +18,15 @@
             <th scope="col">series</th>
             <th scope="col">sale_date</th>
             <th scope="col">type</th>
+            <th scope="col">azioni</th>
+
+
           </tr>
         </thead>
         <tbody>
             @foreach ($comics as $comic)
           <tr>
             <th scope="row">{{$comic->id}}</th>
-            <td>{{$comic->id}}</td>
             <td>{{$comic->title}}</td>
             <td>{{$comic->description}}</td>
             <td>{{$comic->thumb}}</td>
@@ -31,13 +34,15 @@
             <td>{{$comic->series}}</td>
             <td>{{$comic->sale_date}}</td>
             <td>{{$comic->type}}</td>
+            <td><a class="btn btn-primary"href="{{route('comics.show',['comic'=>$comic->id])}}">Vedi</a></td>
+
+
 
 
           </tr>
           @endforeach
         </tbody>
       </table>
-  </table>
 </div>
     
 @endsection

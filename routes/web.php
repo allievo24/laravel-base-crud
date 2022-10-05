@@ -15,3 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route :: resource('comics','ComicController');
+//Route::get('/', function () {
+  //  return redirect()->route('comics.index');
+//});
+
+Route::get('/','HomeController@homepage')->name('homepage');
