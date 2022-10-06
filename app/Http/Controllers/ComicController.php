@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comic;
+use Illuminate\Validation\Rule;
+
 class ComicController extends Controller
 {
     /**
@@ -35,18 +37,32 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {          
-            $data = $request->all();
+        $request->validate(
+            [
+             "title"       =>'required|size:50|min:7',
+             "description" =>'nullable|max:65535',
+             "thumb"       =>'required|size:255|url',
+             "price"       =>'required|max:7|min:4',
+             "series"      =>'required|size:50|min:7',
+             "sale_date"   =>'required|data|',
+             'type'        =>['required', Rule::in(['comic book','graphic novel'])],
+            ]
+        );
+          
 
-            $newComic =new Comic();
-            $newComic->title=$data['title'];
-            $newComic->description =$data['description'];
-            $newComic->thumb =$data['thumb'];
-            $newComic->price =$data['price'];
-            $newComic->series =$data['series'];
-            $newComic->sale_date =$data['sale_date'];
-            $newComic->type=$data['type'];
-            $newComic->save();
-            return redirect()->route('comics.index');
+
+        $data = $request->all();
+
+        $newComic =new Comic();
+        $newComic->title=$data['title'];
+        $newComic->description =$data['description'];
+        $newComic->thumb =$data['thumb'];
+        $newComic->price =$data['price'];
+        $newComic->series =$data['series'];
+        $newComic->sale_date =$data['sale_date'];
+        $newComic->type=$data['type'];
+        $newComic->save();
+        return redirect()->route('comics.index');
 
 
 
@@ -92,7 +108,19 @@ class ComicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {  
+        $request->validate(
+                           [
+                            "title"       =>'required|size:50|min:7',
+                            "description" =>'nullable|max:65535',
+                            "thumb"       =>'required|size:255|url',
+                            "price"       =>'required|max:7|min:4',
+                            "series"      =>'required|size:50|min:7',
+                            "sale_date"   =>'required|data|',
+                            'type'        =>['required', Rule::in(['comic book','graphic novel'])],
+                           ]
+        );
+
         $comic = Comic::find($id);
         
         if($comic){
